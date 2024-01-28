@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "docker:start:dev": "docker-compose up",
     "lint": "next lint"
   },
   "dependencies": {
