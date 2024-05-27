@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "docker:start:dev": "docker-compose up",
+    "docker:start:dev": "docker compose up",
     "format": "prettier --write \"./**/*.{ts,tsx,json,md}\"",
     "format:check": "prettier --check \"./**/*.{ts,tsx,json,md}\"",
     "lint": "next lint",
@@ -19,6 +19,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.6",
+    "dayjs": "^1.11.11",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"
