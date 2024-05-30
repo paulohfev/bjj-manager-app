@@ -23,19 +23,8 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Build Docker Image
-        run: docker build -t bjj-manager-app-dev .
-
-      - name: Start Docker Containers
-        run: |
-          set -e
-          docker-compose up -d || { echo 'Docker Compose failed.' ; exit 1; }
-
       - name: Run tests
         run: npm test
 
       - name: Run linter
         run: npm run lint
-
-      - name: Stop Docker Containers
-        run: docker-compose down
