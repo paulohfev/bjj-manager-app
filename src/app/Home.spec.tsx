@@ -6,7 +6,7 @@ import Home from './page'
 
 describe('Home', () => {
   it('should match the snapshot', () => {
-    const component = renderWithTheme(<Home />)
-    expect(component).toMatchSnapshot()
+    const page = renderWithTheme(<Home />)
+    expect(page).toMatchSnapshot()
   })
 })

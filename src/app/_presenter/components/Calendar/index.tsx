@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 
-import { Box, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
+import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 
 import dayjs from '@/dates'
 
 import styles from './styles'
 
 const Calendar: React.FC = () => {
-  const dateObject = dayjs()
+  const currentDate = dayjs()
+  const [dateObject, setDateObject] = useState(currentDate)
   const [selectedDate, setSelectedDate] = useState(dateObject)
 
   const firstDayOfMonth = Number(dateObject.startOf('month').format('d'))
@@ -83,14 +85,43 @@ const Calendar: React.FC = () => {
     return daysInMonth
   }
 
+  const backTrackOneMonth = () => {
+    const previousMonth = dateObject.subtract(1, 'months')
+    setDateObject(previousMonth)
+    setSelectedDate(previousMonth)
+  }
+
+  const forwardOneMonth = () => {
+    const nextMonth = dateObject.add(1, 'months')
+    setDateObject(nextMonth)
+    setSelectedDate(nextMonth)
+  }
+
+  const returnToCurrentDate = () => {
+    setDateObject(currentDate)
+    setSelectedDate(currentDate)
+  }
+
   return (
     <Box>
-      <Typography component='h1' sx={styles.yearTitle}>
-        {currentYear}
-      </Typography>
-      <Typography component='h3' sx={styles.monthTitle}>
-        {currentMonthName}
-      </Typography>
+      <Box sx={styles.navigationContainer}>
+        <Box sx={styles.dateHeaderContainer}>
+          <Typography component='h1'>{currentYear}</Typography>
+          <Typography component='h3'>{currentMonthName}</Typography>
+        </Box>
+
+        <Box>
+          <Button onClick={() => returnToCurrentDate()} sx={styles.currentDateButton}>
+            Today
+          </Button>
+          <Button onClick={() => backTrackOneMonth()} sx={styles.arrowButton}>
+            <ArrowBackIos />
+          </Button>
+          <Button onClick={() => forwardOneMonth()} sx={styles.arrowButton}>
+            <ArrowForwardIos />
+          </Button>
+        </Box>
+      </Box>
 
       <Table>
         <TableHead>
