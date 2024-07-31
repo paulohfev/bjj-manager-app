@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 import AppTheme from '@/theme/Theme'
 
 import MainLayout from './_presenter/components/MainLayout'
-import Navbar from './_presenter/components/Navbar'
+import ReactQueryProvider from './providers/ReactQueryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,12 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <AppTheme>
-        <body className={inter.className}>
-          <Navbar />
-          <MainLayout>{children}</MainLayout>
-        </body>
-      </AppTheme>
+      <ReactQueryProvider>
+        <AppTheme>
+          <body className={inter.className}>
+            <MainLayout>{children}</MainLayout>
+          </body>
+        </AppTheme>
+      </ReactQueryProvider>
     </html>
   )
 }
