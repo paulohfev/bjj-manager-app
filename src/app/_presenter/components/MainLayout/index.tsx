@@ -2,6 +2,7 @@
 
 import { Box } from '@mui/material'
 
+import Navbar from '../Navbar'
 import styles from './styles'
 
 export type MainLayoutProps = Readonly<{
@@ -10,9 +11,12 @@ export type MainLayoutProps = Readonly<{
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <Box component='main' sx={styles.main}>
-      {children}
-    </Box>
+    <>
+      <Navbar />
+      <Box component='main' sx={styles.main}>
+        {children}
+      </Box>
+    </>
   )
 }
 
