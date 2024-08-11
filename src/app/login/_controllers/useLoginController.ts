@@ -1,20 +1,28 @@
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 
-import { login } from '@/services/LoginService'
+import { APP_ROUTES } from '@/constants/appRoutes'
 import { LoginForm } from '@/types/LoginForm'
 import { Login } from '@/types/api/Login'
 
 const useLoginController = () => {
+  const router = useRouter()
   const formMethods = useForm<LoginForm>()
   const { handleSubmit } = formMethods
 
   const { mutate } = useMutation({
     mutationFn: async (params: Login) => {
-      await login(params)
+      await signIn('credentials', {
+        email: params.email,
+        password: params.password,
+        redirect: false,
+      })
     },
     onSuccess: () => {
-      console.log('Login Success')
+      router.push(APP_ROUTES.root)
     },
   })
 

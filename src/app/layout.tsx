@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+import MainLayout from '@/components/layouts/MainLayout'
+import NextAuthSessionProvider from '@/providers/NextAuthSessionProvider'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import AppTheme from '@/theme/Theme'
-
-import MainLayout from './../components/MainLayout'
-import ReactQueryProvider from './../providers/ReactQueryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <ReactQueryProvider>
-        <AppTheme>
-          <body className={inter.className}>
-            <MainLayout>{children}</MainLayout>
-          </body>
-        </AppTheme>
+        <NextAuthSessionProvider>
+          <AppTheme>
+            <body className={inter.className}>
+              <MainLayout>{children}</MainLayout>
+            </body>
+          </AppTheme>
+        </NextAuthSessionProvider>
       </ReactQueryProvider>
     </html>
   )
