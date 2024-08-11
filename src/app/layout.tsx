@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 
 import AppTheme from '@/theme/Theme'
 
-import MainLayout from './_presenter/components/MainLayout'
+import MainLayout from './components/MainLayout'
 import ReactQueryProvider from './providers/ReactQueryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
