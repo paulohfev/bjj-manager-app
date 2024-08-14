@@ -6,9 +6,9 @@ import { FormProvider } from 'react-hook-form'
 
 import { InputSize } from '@/constants/inputSettings'
 
-import Button from '../components/Button'
-import TextFieldController from '../components/FormControllers/TextFieldController'
-import { TextFieldType } from '../components/TextField'
+import Button from '../../components/Button'
+import TextFieldController from '../../components/FormControllers/TextFieldController'
+import { TextFieldType } from '../../components/TextField'
 import useLoginController from './_controllers/useLoginController'
 import styles from './styles'
 
