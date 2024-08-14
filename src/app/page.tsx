@@ -2,7 +2,7 @@
 
 import { Box, Grid, Typography } from '@mui/material'
 
-import Calendar from './components/Calendar'
+import Calendar from './../components/Calendar'
 
 export default function Home() {
   return (
