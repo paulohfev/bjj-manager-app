@@ -1,13 +1,18 @@
 'use client'
 
-import { AppBar, Typography } from '@mui/material'
+import { AppBar, Box, Typography } from '@mui/material'
 
+import AuthControls from '../AuthControls'
 import styles from './styles'
 
 const Navbar: React.FC = () => {
   return (
     <AppBar position='fixed' sx={styles.appBar}>
-      <Typography>Navbar</Typography>
+      <Box sx={styles.container}>
+        <Typography>Navbar</Typography>
+
+        <AuthControls />
+      </Box>
     </AppBar>
   )
 }

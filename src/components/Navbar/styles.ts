@@ -7,6 +7,13 @@ const styles = {
     justifyContent: 'center',
     padding: '0 24px',
   }),
+
+  container: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
 }
 
 export default styles
