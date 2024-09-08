@@ -1,8 +1,6 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-import jwt from 'jsonwebtoken'
-
 import { APP_ROUTES } from '@/constants/appRoutes'
 import { login } from '@/services/LoginService'
 import { Login } from '@/types/api/Login'
@@ -22,21 +20,14 @@ const authOptions = {
 
         const { email, password } = credentials
 
-        if (!process.env.JWT_SECRET) {
-          throw new Error('token secret is not defined')
-        }
-
-        const token = jwt.sign({ userEmail: email }, process.env.JWT_SECRET, {
-          expiresIn: '24h',
-        })
-
         const loginCredentials: Login = {
           email,
           password,
-          token,
         }
 
         const response = await login(loginCredentials)
+        // response = { userId, email, token }
+        // @TODO review the role of the token in the response into the wider context of the app
         if (!response) {
           return null
         }
