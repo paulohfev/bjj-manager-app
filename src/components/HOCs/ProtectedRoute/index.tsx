@@ -11,6 +11,9 @@ export type ProtectedRouteProps = {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { data: session, status } = useSession()
+
+  console.log('session', session)
+
   const router = useRouter()
 
   useEffect(() => {
