@@ -1,22 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import { Box, Button, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 
 import dayjs from '@/dates'
+import { useDateSelectorStore } from '@/store/dateSelectorStore'
 
 import styles from './styles'
 
 const Calendar: React.FC = () => {
-  const currentDate = dayjs()
-  const [dateObject, setDateObject] = useState(currentDate)
-  const [selectedDate, setSelectedDate] = useState(dateObject)
+  const { currentDate, selectedDate, setSelectedDate } = useDateSelectorStore()
 
-  const firstDayOfMonth = Number(dateObject.startOf('month').format('d'))
-  const currentMonthName = dateObject.format('MMMM')
-  const currentMonthNumber = dateObject.format('MM')
-  const currentYear = dateObject.format('YYYY')
-  const weekDays = dateObject.localeData().weekdaysShort()
+  const firstDayOfMonth = Number(selectedDate.startOf('month').format('d'))
+  const currentMonthName = selectedDate.format('MMMM')
+  const currentMonthNumber = selectedDate.format('MM')
+  const currentYear = selectedDate.format('YYYY')
+  const weekDays = selectedDate.localeData().weekdaysShort()
 
   const handleSelectedDate = (selectedDate: dayjs.Dayjs) => {
     setSelectedDate(selectedDate)
@@ -44,7 +43,7 @@ const Calendar: React.FC = () => {
 
   const getDaysList = () => {
     const days = []
-    for (let d = 1; d <= dateObject.daysInMonth(); d++) {
+    for (let d = 1; d <= selectedDate.daysInMonth(); d++) {
       const formattedDay = () => (d.toString().length === 1 ? `0${d}` : `${d}`)
       const isDaySelected = selectedDate.date() === d
 
@@ -86,19 +85,16 @@ const Calendar: React.FC = () => {
   }
 
   const backTrackOneMonth = () => {
-    const previousMonth = dateObject.subtract(1, 'months')
-    setDateObject(previousMonth)
+    const previousMonth = selectedDate.subtract(1, 'months')
     setSelectedDate(previousMonth)
   }
 
   const forwardOneMonth = () => {
-    const nextMonth = dateObject.add(1, 'months')
-    setDateObject(nextMonth)
+    const nextMonth = selectedDate.add(1, 'months')
     setSelectedDate(nextMonth)
   }
 
   const returnToCurrentDate = () => {
-    setDateObject(currentDate)
     setSelectedDate(currentDate)
   }
 
