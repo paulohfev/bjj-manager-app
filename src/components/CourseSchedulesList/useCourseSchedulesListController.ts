@@ -12,6 +12,7 @@ const useCoursesListController = () => {
   const { data: schedules, isLoading } = useQuery({
     queryKey: [TANSTACK_QUERY_KEYS.schedules, formattedSelectedDate],
     queryFn: () => getSchedules(formattedSelectedDate),
+    staleTime: Infinity,
   })
 
   return {
