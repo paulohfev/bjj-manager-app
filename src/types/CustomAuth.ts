@@ -11,4 +11,5 @@ export type AuthUser = User & {
 
 export type AuthSession = Session & {
   accessToken?: string
+  user?: AuthUser
 }
