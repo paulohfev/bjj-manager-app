@@ -2,7 +2,8 @@
 
 import { AppBar, Box, Typography } from '@mui/material'
 
-import AuthControls from '../AuthControls'
+import SignInNavItem from '../SignInNavItem'
+import UserAvatarNavItem from '../UserAvatarNavItem'
 import styles from './styles'
 
 const Navbar: React.FC = () => {
@@ -11,7 +12,11 @@ const Navbar: React.FC = () => {
       <Box sx={styles.container}>
         <Typography>Navbar</Typography>
 
-        <AuthControls />
+        <Box sx={styles.actionsWrapper}>
+          <SignInNavItem />
+
+          <UserAvatarNavItem />
+        </Box>
       </Box>
     </AppBar>
   )

@@ -1,12 +1,12 @@
 import { Session } from 'next-auth'
-import { signIn, signOut } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 import '@testing-library/jest-dom'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderWithTheme } from '@/utils/jest.utils'
 
-import AuthControls from '.'
+import SignInNavItem from '.'
 
 jest.mock('next-auth/react', () => {
   const originalModule = jest.requireActual('next-auth/react')
@@ -29,34 +29,20 @@ jest.mock('next-auth/react', () => {
   }
 })
 
-describe('AuthControls', () => {
+describe('SignInNavItem', () => {
   beforeEach(() => {
     jest.requireMock('next-auth/react').__setMockSession(null, 'loading')
   })
 
   it('should match the snapshot', () => {
-    const component = renderWithTheme(<AuthControls />)
+    const component = renderWithTheme(<SignInNavItem />)
     expect(component).toMatchSnapshot()
-  })
-
-  it('should render the sign out button when the user is authenticated', () => {
-    jest
-      .requireMock('next-auth/react')
-      .__setMockSession({ user: { name: 'Test User', email: 'test@example.com' } }, 'authenticated')
-
-    renderWithTheme(<AuthControls />)
-
-    const signOutButton = screen.getByText('Sign out')
-    expect(signOutButton).toBeInTheDocument()
-
-    fireEvent.click(signOutButton)
-    expect(signOut).toHaveBeenCalled()
   })
 
   it('should render the sign in button when the user is unauthenticated', () => {
     jest.requireMock('next-auth/react').__setMockSession(null, 'unauthenticated')
 
-    renderWithTheme(<AuthControls />)
+    renderWithTheme(<SignInNavItem />)
 
     const signInButton = screen.getByText('Sign in')
     expect(signInButton).toBeInTheDocument()
@@ -68,7 +54,16 @@ describe('AuthControls', () => {
   it('should not render any button when the session status is loading', () => {
     jest.requireMock('next-auth/react').__setMockSession(null, 'loading')
 
-    renderWithTheme(<AuthControls />)
+    renderWithTheme(<SignInNavItem />)
+
+    expect(screen.queryByText('Sign in')).not.toBeInTheDocument()
+    expect(screen.queryByText('Sign out')).not.toBeInTheDocument()
+  })
+
+  it('should not render any button when the user is authenticated', () => {
+    jest.requireMock('next-auth/react').__setMockSession({ user: { name: 'John Doe' } }, 'authenticated')
+
+    renderWithTheme(<SignInNavItem />)
 
     expect(screen.queryByText('Sign in')).not.toBeInTheDocument()
     expect(screen.queryByText('Sign out')).not.toBeInTheDocument()

@@ -8,6 +8,12 @@ const styles = {
     padding: '0 24px',
   }),
 
+  actionsWrapper: {
+    alignItems: 'center',
+    display: 'flex',
+    gap: '16px',
+  },
+
   container: {
     alignItems: 'center',
     display: 'flex',
