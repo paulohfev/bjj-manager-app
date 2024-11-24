@@ -1,10 +1,11 @@
 import { signOut, useSession } from 'next-auth/react'
 
-import { Avatar, Box, IconButton, Popover, Skeleton } from '@mui/material'
+import { Avatar, Box, IconButton, Popover } from '@mui/material'
 
 import PopupState, { bindPopover, bindTrigger } from 'material-ui-popup-state'
 
 import Tooltip from '../Tooltip'
+import UserAvatarNavItemSkeleton from '../skeletons/UserAvatarNavItemSkeleton'
 import styles from './styles'
 
 const UserAvatarNavItem: React.FC = () => {
@@ -25,7 +26,7 @@ const UserAvatarNavItem: React.FC = () => {
             <>
               <Tooltip placement='bottom' text='Your Profile'>
                 <IconButton {...bindTrigger(popupState)}>
-                  <Avatar />
+                  <Avatar sx={styles.avatar} />
                 </IconButton>
               </Tooltip>
 
@@ -49,7 +50,7 @@ const UserAvatarNavItem: React.FC = () => {
 
   return (
     <Box sx={styles.skeletonWrapper}>
-      <Skeleton component='div' variant='circular' height={40} width={40} />
+      <UserAvatarNavItemSkeleton />
     </Box>
   )
 }

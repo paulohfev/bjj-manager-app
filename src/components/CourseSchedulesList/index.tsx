@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material'
 
 import ScheduleCard from '../ScheduleCard'
+import CourseSchedulesListSkeleton from '../skeletons/CourseSchedulesListSkeleton'
 import styles from './styles'
 import useCourseSchedulesListController from './useCourseSchedulesListController'
 
@@ -10,7 +11,7 @@ const CoursesList: React.FC = () => {
   return (
     <Box sx={styles.container}>
       {isLoading ? (
-        <Typography>Loading...</Typography>
+        <CourseSchedulesListSkeleton />
       ) : schedules?.length === 0 ? (
         <Typography>No schedules found</Typography>
       ) : (

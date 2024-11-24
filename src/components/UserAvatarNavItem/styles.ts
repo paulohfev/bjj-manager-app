@@ -1,6 +1,11 @@
-import { alpha } from '@mui/material'
+import { Theme, alpha } from '@mui/material'
 
 const styles = {
+  avatar: (theme: Theme) => ({
+    height: theme.userAvatarNav.height,
+    width: theme.userAvatarNav.width,
+  }),
+
   menuItemWrapper: {
     cursor: 'pointer',
     background: 'inherit',
