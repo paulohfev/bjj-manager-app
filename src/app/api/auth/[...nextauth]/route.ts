@@ -1,4 +1,4 @@
-import NextAuth, { Session, User } from 'next-auth'
+import NextAuth, { AuthOptions, Session, User } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 import { APP_ROUTES } from '@/constants/appRoutes'
@@ -6,7 +6,7 @@ import { login } from '@/services/LoginService'
 import { AuthToken } from '@/types/CustomAuth'
 import { Login } from '@/types/api/Login'
 
-const authOptions = {
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Login',

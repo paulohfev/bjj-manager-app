@@ -13,7 +13,7 @@ const useLoginController = () => {
   const formMethods = useForm<LoginForm>()
   const { handleSubmit } = formMethods
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (params: Login) => {
       await signIn('credentials', {
         email: params.email,
@@ -31,6 +31,7 @@ const useLoginController = () => {
   return {
     formMethods,
     onSubmit,
+    isSignInLoading: isPending,
   }
 }
 
