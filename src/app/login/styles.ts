@@ -6,6 +6,16 @@ const styles = {
     justifyContent: 'center',
     gap: '10px',
   },
+
+  button: {
+    height: '40px',
+    width: '100%',
+  },
+
+  gridContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }
 
 export default styles

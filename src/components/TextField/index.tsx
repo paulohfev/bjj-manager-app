@@ -13,7 +13,7 @@ export type TextFieldProps = Omit<MUITextFieldProps, 'size'> & {
 }
 
 const TextField: React.FC<TextFieldProps> = ({ size = InputSize.medium, ...props }) => {
-  return <MUITextField {...props} size={size} />
+  return <MUITextField {...props} size={size} sx={{ width: '100%' }} />
 }
 
 export default TextField
